@@ -10,7 +10,7 @@ export const defaultSettings = {
   logo: "",
   logoAlt: "Lucy CRYO Services logo",
   phone: "613-709-8764",
-  email: "lucylavergne50@gmail.com",
+  email: "lucy@lucycryoservices.org",
   website: "www.lucycryoservices.org",
   topBarText: "Medical Spa – Home Based Business",
   bookingCtaText: "Book Your Consultation",
