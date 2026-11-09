@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { ServiceIcon } from "@/components/site/icons";
+import { PriceTag } from "@/components/site/PriceTag";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import type { HomeContent } from "@/lib/defaults";
 import type { ServiceItem } from "@/lib/data";
@@ -35,6 +36,7 @@ export function FeaturedTreatments({ content, services }: { content: HomeContent
               </div>
               <div className="flex flex-1 flex-col p-7">
                 <h3 className="font-serif text-3xl font-semibold text-navy">{s.title}</h3>
+                <PriceTag price={s.price} note={s.priceNote} className="mt-1" />
                 <p className="mt-3 flex-1 leading-7 text-muted">{s.shortDescription}</p>
                 <Link
                   href={`/services#${s.slug}`}

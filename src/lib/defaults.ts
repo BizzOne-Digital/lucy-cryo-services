@@ -176,6 +176,8 @@ export const seedServices = [
   {
     title: "CoolSculpting",
     slug: "coolsculpting",
+    price: "$99",
+    priceNote: "per applicator",
     icon: "snowflake",
     image: IMG.coolsculpting,
     imageAlt: "Woman receiving a cooling body contouring treatment on the abdomen",
@@ -188,6 +190,8 @@ export const seedServices = [
   {
     title: "Hydro Facial",
     slug: "hydro-facial",
+    price: "$99",
+    priceNote: "",
     icon: "droplet",
     image: IMG.hydrofacial,
     imageAlt: "Woman relaxing during a Hydro Facial treatment",
@@ -200,6 +204,8 @@ export const seedServices = [
   {
     title: "Muscle Stimulation",
     slug: "muscle-stimulation",
+    price: "$99",
+    priceNote: "for 4 sessions",
     icon: "activity",
     image: IMG.muscle,
     imageAlt: "Muscle stimulation pads placed on the abdomen",
@@ -212,6 +218,8 @@ export const seedServices = [
   {
     title: "CRYO Coolwave",
     slug: "cryo-coolwave",
+    price: "$150",
+    priceNote: "per treatment",
     icon: "snowflake",
     image: IMG.coolwave,
     imageAlt: "Specialist performing a CRYO cooling body treatment",
@@ -224,6 +232,8 @@ export const seedServices = [
   {
     title: "Onda Pro Treatment",
     slug: "onda-pro-treatment",
+    price: "",
+    priceNote: "",
     icon: "waves",
     image: IMG.onda,
     imageAlt: "Onda Pro body contouring treatment on the thigh",
@@ -236,6 +246,8 @@ export const seedServices = [
   {
     title: "HIFU Facelift",
     slug: "hifu-facelift",
+    price: "$99",
+    priceNote: "HIFU 7D",
     icon: "face",
     image: IMG.hifu,
     imageAlt: "Non-surgical HIFU facial lift treatment along the jawline",

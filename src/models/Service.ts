@@ -11,6 +11,8 @@ const ServiceSchema = new Schema(
     benefits: { type: [String], default: [] },
     image: { type: String, default: "" },
     imageAlt: { type: String, default: "" },
+    price: { type: String, default: "", maxlength: 40 },
+    priceNote: { type: String, default: "", maxlength: 80 },
     icon: { type: String, enum: SERVICE_ICONS, default: "sparkles" },
     featured: { type: Boolean, default: false },
     active: { type: Boolean, default: true },

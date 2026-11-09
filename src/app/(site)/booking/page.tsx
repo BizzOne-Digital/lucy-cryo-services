@@ -26,7 +26,7 @@ export default async function BookingPage({ searchParams }: { searchParams: Prom
     <>
       <PageHero eyebrow="Booking" title={pages.booking.heading} text={pages.booking.text} />
       <div className="container-lux grid gap-10 py-14 sm:py-20 lg:grid-cols-[1.6fr_1fr]">
-        <BookingForm services={services.map((s) => ({ _id: s._id, title: s.title }))} initialServiceId={service} />
+        <BookingForm services={services.map((s) => ({ _id: s._id, title: s.price ? `${s.title} – ${s.price}${s.priceNote ? " " + s.priceNote : ""}` : s.title }))} initialServiceId={service} />
 
         <aside className="space-y-6">
           <div className="rounded-3xl bg-ice p-7">

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ServiceIcon } from "@/components/site/icons";
+import { PriceTag } from "@/components/site/PriceTag";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import type { ServiceItem } from "@/lib/data";
 import { resolveImageUrl } from "@/lib/images";
@@ -22,7 +23,10 @@ export function ServicesPreview({ heading, services }: { heading: string; servic
               >
                 <div className="flex min-h-[64px] items-center gap-3 px-2 py-2">
                   <ServiceIcon name={s.icon} className="shrink-0 text-aqua" size={30} />
-                  <h3 className="text-[17px] leading-tight font-bold text-navy">{s.title}</h3>
+                  <div className="min-w-0">
+                    <h3 className="text-[17px] leading-tight font-bold text-navy">{s.title}</h3>
+                    <PriceTag price={s.price} note={s.priceNote} className="mt-0.5" />
+                  </div>
                 </div>
                 <div className="relative mt-auto aspect-[4/3] overflow-hidden rounded-xl">
                   <Image

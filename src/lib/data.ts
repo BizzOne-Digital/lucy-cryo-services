@@ -31,6 +31,8 @@ export type ServiceItem = {
   benefits: string[];
   image: string;
   imageAlt?: string;
+  price?: string;
+  priceNote?: string;
   icon?: string;
   featured: boolean;
   active: boolean;
@@ -101,7 +103,9 @@ async function ensureSeeded() {
       await connectDB();
       const marker = await SiteContent.findOne({ key: "_seed" }).lean();
       if (marker) {
-        if (!(marker.data as { brandImages?: boolean })?.brandImages) await applyBrandImages();
+        const flags = (marker.data || {}) as { brandImages?: boolean; prices2026?: boolean };
+        if (!flags.brandImages) await applyBrandImages();
+        if (!flags.prices2026) await applyPrices();
         return;
       }
       const [s, b, p] = await Promise.all([
@@ -114,7 +118,7 @@ async function ensureSeeded() {
       if (!p) await Promotion.insertMany(seedPromotions);
       await SiteContent.updateOne(
         { key: "_seed" },
-        { $set: { data: { seededAt: new Date().toISOString(), brandImages: true } } },
+        { $set: { data: { seededAt: new Date().toISOString(), brandImages: true, prices2026: true } } },
         { upsert: true },
       );
     })().catch((e) => {
@@ -141,6 +145,21 @@ async function applyBrandImages() {
     ...seedPromotions.map((p) => Promotion.updateOne({ title: p.title, image: isStock }, { $set: { image: p.image } })),
   ]);
   await SiteContent.updateOne({ key: "_seed" }, { $set: { "data.brandImages": true } });
+}
+
+/** One-time migration: adds the client-supplied prices to existing services that have no price yet. */
+async function applyPrices() {
+  await Promise.all(
+    seedServices
+      .filter((s) => s.price)
+      .map((s) =>
+        Service.updateOne(
+          { slug: s.slug, $or: [{ price: { $exists: false } }, { price: "" }] },
+          { $set: { price: s.price, priceNote: s.priceNote } },
+        ),
+      ),
+  );
+  await SiteContent.updateOne({ key: "_seed" }, { $set: { "data.prices2026": true } });
 }
 
 /** Runs a DB query; returns fallback content if MongoDB is missing or unreachable so pages never break. */

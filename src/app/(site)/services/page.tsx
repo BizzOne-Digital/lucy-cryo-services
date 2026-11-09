@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Check, Gift, Info } from "lucide-react";
 import { PageHero } from "@/components/site/PageHero";
 import { SectionHeading } from "@/components/site/SectionHeading";
+import { PriceTag } from "@/components/site/PriceTag";
 import { ServiceIcon } from "@/components/site/icons";
 import { BookingCTA } from "@/components/home/BookingCTA";
 import { getHomeContent, getPagesContent, getPromotions, getServices, getSettings } from "@/lib/data";
@@ -68,7 +69,12 @@ export default async function ServicesPage() {
                 <h2 id={`${s.slug}-title`} className="heading-serif mt-3 text-4xl sm:text-5xl">
                   {s.title}
                 </h2>
-                <p className="mt-3 text-lg font-medium text-teal">{s.shortDescription}</p>
+                {s.price && (
+                  <div className="mt-4 inline-flex rounded-2xl bg-aqua-light/70 px-5 py-3">
+                    <PriceTag price={s.price} note={s.priceNote} size="lg" />
+                  </div>
+                )}
+                <p className="mt-4 text-lg font-medium text-teal">{s.shortDescription}</p>
                 <p className="mt-5 text-[17px] leading-8 whitespace-pre-line text-ink/85">{s.description}</p>
                 {s.benefits.length > 0 && (
                   <>

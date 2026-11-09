@@ -74,6 +74,8 @@ export const serviceInput = z.object({
   benefits: z.array(text(200)).max(20).default([]).transform((a) => a.filter(Boolean)),
   image: imageUrl.default(""),
   imageAlt: text(240).default(""),
+  price: text(40).default(""),
+  priceNote: text(80).default(""),
   icon: z.enum(SERVICE_ICONS).default("sparkles"),
   featured: z.boolean().default(false),
   active: z.boolean().default(true),
