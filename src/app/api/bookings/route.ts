@@ -43,7 +43,16 @@ export async function POST(req: Request) {
       status: "pending",
     });
 
-    await notifyNewSubmission("booking", { id: String(booking._id), name: booking.name, service: serviceName });
+    await notifyNewSubmission("booking", {
+      id: String(booking._id),
+      name: input.name,
+      email: input.email,
+      phone: input.phone,
+      service: serviceName,
+      preferredDate: input.preferredDate,
+      preferredTime: input.preferredTime,
+      message: input.message,
+    });
     revalidatePath("/admin", "layout");
 
     return ok({ message: "Your consultation request has been received.", id: String(booking._id) }, 201);

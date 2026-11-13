@@ -23,7 +23,13 @@ export async function POST(req: Request) {
       phone: input.phone,
       message: input.message,
     });
-    await notifyNewSubmission("inquiry", { id: String(doc._id), name: doc.name });
+    await notifyNewSubmission("inquiry", {
+      id: String(doc._id),
+      name: input.name,
+      email: input.email,
+      phone: input.phone,
+      message: input.message,
+    });
     revalidatePath("/admin", "layout");
 
     return ok({ message: "Thank you. Your message has been sent." }, 201);
